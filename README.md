@@ -4,8 +4,8 @@
 
 This project uses Python 2.7.
 
-'''python
+```python
   pip install flask
   pip install flask-api
   pip install flask-sqlalchemy
-'''
+```
