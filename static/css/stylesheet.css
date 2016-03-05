@@ -72,6 +72,10 @@ footer a:hover,
 	color: #B6B6B6;
 }
 
+a button {
+	color: #212121;
+}
+
 /******************** Navbar ********************/
 .navbar {
 	background: #0288D1;
