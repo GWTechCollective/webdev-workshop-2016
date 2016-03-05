@@ -1,0 +1,245 @@
+/*********************************
+ * DankTank Stylesheet 
+ * Brandon Bernier
+ * Mark Tentindo
+ * Updated: 2016-03-05
+ *********************************/
+ 
+ /* Blue-Grey Color Palette
+  * Dark Primary Blue	- #0288D1
+  * Primary Blue	 	- #03A9F4
+  * Light Primary Blue	- #B3E5FC
+  * Accent Color		- #607D8B
+  * Primary Text		- #212121
+  * Secondary Text	 	- #727272
+  * Divider Color 		- #B6B6B6
+  */
+
+/******************** General Elements ********************/
+html {
+	font-size: 16px;
+}
+
+body {
+	background-color: #EEE;
+	color: #212121;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 1em;
+	margin-top: 50px;
+}
+
+hr {
+	background-color: #CCC;
+	border: 0;
+	height: 1px;
+	margin: 8px 0;
+}
+
+p {
+	margin: 1em 0;
+}
+
+/******************** Header Styles ********************/
+h1, h2, h3, h4, h5, h6 {
+	color: #0288D1;
+	font-weight: bold;
+}
+
+h1 {
+	font-variant: small-caps;
+}
+
+/******************** Link Styles ********************/
+a, a:visited {
+	color: #03A9F4;
+}
+
+a:hover {
+	color: #B6B6B6;
+	text-decoration: none;
+	transition: 0.2s;
+	-webkit-transition: 0.2s;
+}
+
+footer a, footer a:visited, 
+.navbar-default .navbar-nav li a,
+.navbar-default .navbar-nav li a:focus, 
+.navbar-default .navbar-nav li a:visited {
+	color: white;
+}
+
+body a:hover,
+footer a:hover, 
+.navbar-default .navbar-nav li a:hover, 
+.navbar-default .navbar-nav .open .dropdown-menu li a:hover,
+#mc-subscribe:hover {
+	color: #B6B6B6;
+}
+
+/******************** Navbar ********************/
+.navbar {
+	background: #0288D1;
+	border: 0;
+	box-shadow: 0 2px 2px rgba(0,0,0,0.5);
+}
+
+.navbar-brand {
+	padding: 5px 15px;
+}
+
+.navbar-brand img {
+	border-radius: 5px;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu li a {
+	color:	#212121;
+}
+
+.navbar-default .navbar-nav .open .dropdown-menu li a:hover {
+	background-color: #0288D1;
+	font-weight: bold;
+}
+
+.dropdown-menu {
+	margin-left: -1px;
+}
+
+.navbar-right {
+	margin-right: 0;
+}
+
+.navbar-nav li .social_icons {
+	padding: 9px 5px 0 5px;
+}
+
+/******************** Body ********************/
+.header-img {
+	background-color: #727272;
+}
+
+#DankTank {
+	padding: 20px 0;
+	width: 40%;
+}
+
+#danker {
+	height: 300px;
+}
+
+.btn {
+	font-weight: bold;
+	margin-top: 10px;
+}
+
+.btn-dusty {
+	background-color: #B6B6B6;
+	font-size: 1.5em;
+}
+
+.btn-dank {
+	background-color: #03A9F4;
+	font-size: 1.5em;
+}
+
+#body {
+	background-color: white;
+	padding: 20px 20px 50px 20px;
+	visibility: hidden;
+}
+
+.panel-login {
+	width: 60%;
+}
+
+/******************** Sidebar ********************/
+#sidebar {
+	border-left: solid 1px #CCC;
+}
+
+#sidebar hr {
+	margin: 20px 0;
+}
+
+#tweets {	
+	padding-top: 27px;
+}
+
+#tweets iframe {
+	display: block !important; 
+	margin: 0 auto;
+}
+
+#logo {
+	border-radius: 25px;
+	margin-top: 20px;
+}
+
+/******************** Footer ********************/
+.footer .navbar-bottom {
+	background: #0288D1;
+	color: white;
+	font-size: 14px;
+}
+
+.footer-col {
+	display: flex;
+	height: 50px;
+	justify-content: center;
+}
+
+.inner {
+	align-self: center;
+}
+
+/******************** Executive Board ********************/
+.board h4 {
+	margin: 0 0 5px 0;
+}
+
+.board p {
+	margin: 2px 0 0 0;
+}
+
+.board .panel-default {
+	border-color: #CCC;
+}
+
+.board .panel-body, 
+.board .panel-footer {
+	padding: 8px;
+}
+
+.board .panel-body img {
+	border-radius: 4px 4px 0 0;
+}
+
+/******************** Smaller Media Adjustments ********************/
+@media (max-width: 767px) {
+	.navbar-default .navbar-nav .open .dropdown-menu li a,
+	.navbar-default .navbar-nav .open .dropdown-menu li a:visited {
+		color: white;
+	}
+
+	.navbar-default .navbar-nav .open .dropdown-menu li a:hover {
+		color: #0288D1;
+	}
+
+	#sidebar {
+		border-top: solid 2px #212121;
+		margin-top: 30px;
+	}
+}
+
+@media (max-width: 991px) {
+	.navbar-nav li .social_icons {
+		display: none;
+	}
+
+	.footer-col {
+		height: 30px;
+	}
+
+	.footer .row {
+		padding: 5px 0 10px 0;
+	}
+}
