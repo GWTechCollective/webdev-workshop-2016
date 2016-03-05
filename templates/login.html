@@ -1,18 +1,5 @@
 {% extends "layout.html" %}
 {% block body %}
-  <h2>Login</h2>
-  {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
-  <form action="{{ url_for('login') }}" method=post>
-    <dl>
-      <dt>Username:
-      <dd><input type=text name=username>
-      <dt>Password:
-      <dd><input type=password name=password>
-      <dd><input type=submit value=Login>
-    </dl>
-  </form>
-{% endblock %}
-
 
 <div class="container" id="body">
   <div class="row">
@@ -29,7 +16,7 @@
               <label for="pwd">Password:</label>
               <input type="password" class="form-control" id="pwd" name="password">
             </div>
-            <input type="submit" class="btn btn-primary" value="login">Login</input>
+            <input type="submit" class="btn btn-primary" value="Login"></input>
           </form>
         </div>
       </div>
@@ -40,7 +27,9 @@
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
         </script>
       </div>
-      <img id="logo" class="img-responsive center-block" src="../pictures/logo.jpg">
+      <img id="logo" class="img-responsive center-block" src="static/pictures/logo.jpg">
     </div>
   </div>
 </div>
+
+{% endblock %}

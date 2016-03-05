@@ -61,7 +61,11 @@
           <li><a href="{{ url_for('add_entry') }}">Submit</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-        	<li><a href="{{ url_for('login') }}">Login</a></li>
+					{% if not session.logged_in %}
+        		<li><a href="{{ url_for('login') }}">Login</a></li>
+					{% else %}
+						<li><a href="{{ url_for('logout') }}">Logout</a></li>
+					{% endif %}
           	<li><a class="social_icons" href="mailto:info@gwtechcollective.org"><i class="fa fa-envelope-square fa-2x"></i></a></li>
           	<li><a class="social_icons" target="_blank" href="https://www.facebook.com/groups/gwtechcollective"><i class="fa fa-facebook-square fa-2x"></i></a></li>
         </ul>

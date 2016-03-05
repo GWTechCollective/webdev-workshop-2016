@@ -53,7 +53,7 @@ def show_post():
 @app.route('/add', methods=['GET', 'POST'])
 def add_entry():
     if not session.get('logged_in'):
-        abort(401)
+        return redirect(url_for('login'))
 
     if request.method == 'POST':
 
