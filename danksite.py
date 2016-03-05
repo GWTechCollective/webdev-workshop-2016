@@ -102,6 +102,10 @@ def vote():
     db.session.commit()
     return ('', status.HTTP_200_OK)
 
+@app.route('/categories')
+def show_categories():
+    return render_template('categories.html')
+
 def allowed_file(filename):
     return '.' in filename and \
         filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS

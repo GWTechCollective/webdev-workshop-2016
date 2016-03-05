@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+{% block body %}
+
+	<div class="container" id="body">
+		<div class="row">
+			<div class="col-sm-8 categories">
+				<h1><em>Categories</em></h1><hr><br>
+				<div class="row">
+					<div class="col-sm-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <img class="img-responsive center-block" src="static/pictures/haruhi.gif"/>
+              </div>
+              <div class="panel-footer text-center">
+                <h4>Smug</h4>
+              </div>
+            </div>
+					</div>
+          <div class="col-sm-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <img class="img-responsive center-block" src="static/pictures/pepe.jpg"/>
+              </div>
+              <div class="panel-footer text-center">
+                <h4>Pepe</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <img class="img-responsive center-block" src="static/pictures/tech.png"/>
+              </div>
+              <div class="panel-footer text-center">
+                <h4>Tech</h4>
+              </div>
+            </div>
+          </div>
+				</div>
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <img class="img-responsive center-block" src="static/pictures/doge.jpg"/>
+              </div>
+              <div class="panel-footer text-center">
+                <h4>Doge</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <img class="img-responsive center-block" src="static/pictures/wonka.jpg"/>
+              </div>
+              <div class="panel-footer text-center">
+                <h4>Wonka</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <img class="img-responsive center-block" src="static/pictures/dankest.jpg"/>
+              </div>
+              <div class="panel-footer text-center">
+                <h4>Dankest Dank</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+			</div>
+			<div class="col-sm-4" id="sidebar">
+			    <div id="tweets">
+			    	<a class="twitter-timeline" href="https://twitter.com/GWTechies" data-widget-id="373284789756755968">Tweets by @GWTechies</a>
+					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+					</script>
+				</div>
+				<img id="logo" class="img-responsive center-block" src="static/pictures/logo.jpg">
+			</div>
+		</div>
+	</div>
+	{% endblock %}
