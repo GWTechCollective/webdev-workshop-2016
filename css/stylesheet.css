@@ -35,10 +35,6 @@ hr {
 	margin: 8px 0;
 }
 
-p {
-	margin: 1em 0;
-}
-
 /******************** Header Styles ********************/
 h1, h2, h3, h4, h5, h6 {
 	color: #0288D1;
@@ -156,12 +152,8 @@ footer a:hover,
 	border-left: solid 1px #CCC;
 }
 
-#sidebar hr {
-	margin: 20px 0;
-}
-
 #tweets {	
-	padding-top: 27px;
+	margin-top: 27px;
 }
 
 #tweets iframe {
@@ -178,7 +170,7 @@ footer a:hover,
 .footer .navbar-bottom {
 	background: #0288D1;
 	color: white;
-	font-size: 14px;
+	font-size: 0.85em;
 }
 
 .footer-col {
@@ -227,10 +219,6 @@ footer a:hover,
 }
 
 @media (max-width: 991px) {
-	.navbar-nav li .social_icons {
-		display: none;
-	}
-
 	.footer-col {
 		height: 30px;
 	}
