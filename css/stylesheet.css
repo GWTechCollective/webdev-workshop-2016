@@ -191,25 +191,21 @@ footer a:hover,
 	align-self: center;
 }
 
-/******************** Executive Board ********************/
-.board h4 {
+/******************** Cateogories ********************/
+.categories h4 {
 	margin: 0 0 5px 0;
 }
 
-.board p {
-	margin: 2px 0 0 0;
-}
-
-.board .panel-default {
+.categories .panel-default {
 	border-color: #CCC;
 }
 
-.board .panel-body, 
-.board .panel-footer {
+.categories .panel-body, 
+.categories .panel-footer {
 	padding: 8px;
 }
 
-.board .panel-body img {
+.categories .panel-body img {
 	border-radius: 4px 4px 0 0;
 }
 
