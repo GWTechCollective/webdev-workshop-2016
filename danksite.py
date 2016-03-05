@@ -1,9 +1,9 @@
-import os, json
+import os
 from datetime import datetime
 from flask import Flask, request, session, redirect, url_for, abort, render_template
 from flask.ext.api import status
-from sqlalchemy.sql.expression import func
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.sql.expression import func
 from sqlalchemy import desc, Integer, String, Column, DateTime
 from werkzeug import secure_filename
 
@@ -22,7 +22,6 @@ app = Flask(__name__)
 app.config.from_object(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + DATABASE
 db = SQLAlchemy(app)
-
 
 class DankPost(db.Model):
     id = Column(Integer, primary_key=True)
@@ -67,7 +66,6 @@ def add_entry():
             db.session.add(new_post)
             db.session.commit()
 
-            entry = DankPost.query.filter_by(title=new_post.title, filename=new_post.filename).all()
             return redirect(url_for('show_post'))
     return render_template('upload.html')
 
