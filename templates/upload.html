@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="container" id="body">
+  <div class="row">
+    <div class="col-sm-8">
+      <h1><em>Submit Your Own Dank Meme</em></h1><hr><br>
+      <div class="panel panel-default center-block panel-login">
+        <div class="panel-body">
+          <form action="{{ url_for('add_entry') }}" method=post class=add-entry enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="title">Title:</label>
+              <input type="text" class="form-control" id="title" name="title" size="30">
+              <input type="file" name="imgfile" accept="image/*">
+            </div>
+            <input type="submit" class="btn btn-primary" value="Upload">
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4" id="sidebar">
+        <div id="tweets">
+          <a class="twitter-timeline" href="https://twitter.com/GWTechies" data-widget-id="373284789756755968">Tweets by @GWTechies</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+        </script>
+      </div>
+      <img id="logo" class="img-responsive center-block" src="static/pictures/logo.jpg">
+    </div>
+  </div>
+</div>
+
+{% endblock %}

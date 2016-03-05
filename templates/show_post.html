@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="container" id="body">
+  <div class="row">
+    <div class="col-sm-8">
+      <h1><em>Dank. Dank. More Dank.</em></h1><hr><br>
+      {% for entry in entries %}
+        <img id="danker" class="center-block" src="/static/uploads/{{  entry.filename }}">
+        <br><br>
+        <div class="row">
+          <div class="col-sm-6 text-center">
+            <a href="{{ url_for('show_post') }}"><button type="button" id="{{ entry.id }}" class="btn btn-lg btn-block btn-dusty">Dusty</button></a>
+          </div>
+          <div class="col-sm-6 text-center">
+            <a href="{{ url_for('show_post') }}"><button type="button" id="{{ entry.id }}" class="btn btn-lg btn-block btn-dank">Dank</button> </a>
+          </div>
+        </div>
+      {% else %}
+        <li><em>No entries. How dusty.</em>
+      {% endfor %}
+    </div>
+    <div class="col-sm-4" id="sidebar">
+        <div id="tweets">
+          <a class="twitter-timeline" href="https://twitter.com/GWTechies" data-widget-id="373284789756755968">Tweets by @GWTechies</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+        </script>
+      </div>
+      <img id="logo" class="img-responsive center-block" src="static/pictures/logo.jpg">
+    </div>
+  </div>
+</div>
+{% endblock %}
