@@ -15,12 +15,14 @@ USERNAME = 'admin'
 PASSWORD = 'password'
 UPLOAD_FOLDER = './static/uploads'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+SQLALCHEMY_DATABASE_URI = 'sqlite:///' + DATABASE
+SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 print 'Set Config'
 
 app = Flask(__name__)
 app.config.from_object(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + DATABASE
+
 db = SQLAlchemy(app)
 
 class DankPost(db.Model):
