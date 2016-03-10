@@ -63,4 +63,5 @@ target/
 
 # Directories
 tmp/
-static/uploads
+static/uploads/
+static/pictures/
