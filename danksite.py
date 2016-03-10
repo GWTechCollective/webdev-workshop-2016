@@ -18,11 +18,11 @@ def show_post():
     query = request.args.get('dank_rank')
 
     if query == "dankest":
-        post = DankPost.query.order_by(desc(DankPost.dank_rank)).limit(1).all()
+        post = DankPost.query.order_by(desc(DankPost.dank_rank)).one()
     elif query == "dustiest":
-        post = DankPost.query.order_by(DankPost.dank_rank).limit(1).all()
+        post = DankPost.query.order_by(DankPost.dank_rank).one()
     else:
-        post = DankPost.query.order_by(func.random()).limit(1).all()
+        post = DankPost.query.order_by(func.random()).one()
     return render_template('show_post.html', entries=post)
 
 @app.route('/add', methods=['GET', 'POST'])
