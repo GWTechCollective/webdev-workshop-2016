@@ -2,43 +2,16 @@ import os
 from datetime import datetime
 from flask import Flask, request, session, redirect, url_for, abort, render_template
 from flask.ext.api import status
-from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql.expression import func
-from sqlalchemy import desc, Integer, String, Column, DateTime
+from dank_db import *
 from werkzeug import secure_filename
-
-#config
-DATABASE = 'tmp/dank.db'
-DEBUG = True
-SECRET_KEY = 'secret'
-USERNAME = 'admin'
-PASSWORD = 'password'
-UPLOAD_FOLDER = './static/uploads'
-ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + DATABASE
-SQLALCHEMY_TRACK_MODIFICATIONS = False
-
-print 'Set Config'
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.config.from_object(__name__)
-
-db = SQLAlchemy(app)
-
-class DankPost(db.Model):
-    id = Column(Integer, primary_key=True)
-    title = Column(String(128), unique=False)
-    filename = Column(String(128), unique=False)
-    dank_rank = Column(Integer, unique=False)
-    timestamp = Column(DateTime, unique=False)
-
-    def __init__(self, title, filename):
-        self.title = title
-        self.filename = filename
-        self.dank_rank = 0
-        self.timestamp = datetime.utcnow()
-
-db.create_all()
+app.config.from_pyfile('dank_tank.cfg')
+db.init_app(app)
+with app.app_context():
+    db.create_all()
 
 @app.route('/')
 def show_post():
@@ -75,13 +48,19 @@ def add_entry():
 def login():
     error = None
     if request.method == 'POST':
-        if request.form['username'] != app.config['USERNAME']:
-            error = 'Invalid Username'
-        elif request.form['password'] != app.config['PASSWORD']:
-            error = 'Invalid Password'
+        user = User.query.filter_by(username=request.form['username']).one()
+        if user:
+
+            if check_password_hash(user.passhash, request.form['password']):
+                session['logged_in'] = True
+                return redirect(url_for('show_post'))
+            else:
+                error = 'Invalid Password'
+                print "Invalid Password: " + request.form['password']
         else:
-            session['logged_in'] = True
-            return redirect(url_for('show_post'))
+            error = 'Invalid Username'
+            print "Invalid Username: " + request.form['username']
+
     return render_template('login.html', error=error)
 
 @app.route('/logout')
@@ -102,6 +81,7 @@ def vote():
         pass
 
     db.session.commit()
+
     return ('', status.HTTP_200_OK)
 
 @app.route('/categories')
