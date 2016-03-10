@@ -4,6 +4,8 @@
 
 This project uses Python 2.7.
 
+The required modules may be installed using the following commands:
+
 ```python
   pip install flask
   pip install flask-api
