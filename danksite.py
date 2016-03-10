@@ -1,11 +1,13 @@
 import os
-from datetime import datetime
 from flask import Flask, request, session, redirect, url_for, abort, render_template
 from flask.ext.api import status
 from sqlalchemy.sql.expression import func
 from dank_db import *
 from werkzeug import secure_filename
-from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.security import check_password_hash
+
+ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
+UPLOAD_FOLDER = './static/uploads'
 
 app = Flask(__name__)
 app.config.from_pyfile('dank_tank.cfg')
@@ -18,11 +20,11 @@ def show_post():
     query = request.args.get('dank_rank')
 
     if query == "dankest":
-        post = DankPost.query.order_by(desc(DankPost.dank_rank)).one()
+        post = DankPost.query.order_by(desc(DankPost.dank_rank)).limit(1).all()
     elif query == "dustiest":
-        post = DankPost.query.order_by(DankPost.dank_rank).one()
+        post = DankPost.query.order_by(DankPost.dank_rank).limit(1).all()
     else:
-        post = DankPost.query.order_by(func.random()).one()
+        post = DankPost.query.order_by(func.random()).limit(1).all()
     return render_template('show_post.html', entries=post)
 
 @app.route('/add', methods=['GET', 'POST'])
@@ -62,6 +64,22 @@ def login():
             print "Invalid Username: " + request.form['username']
 
     return render_template('login.html', error=error)
+
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+
+    error = None
+
+    if request.method == 'POST':
+        if User.query.filter_by(username=request.form['username']).limit(1).all():
+            error = 'Username already taken.'
+        else:
+            new_user = User(request.form['username'], request.form['password'])
+            db.session.add(new_user)
+            db.session.commit()
+
+    return render_template('registration.html', error=error)
+
 
 @app.route('/logout')
 def logout():

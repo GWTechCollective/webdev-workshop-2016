@@ -1,4 +1,6 @@
 from flask.ext.sqlalchemy import SQLAlchemy
+from datetime import datetime
+from werkzeug.security import generate_password_hash
 
 db = SQLAlchemy()
 
@@ -39,4 +41,4 @@ class User(db.Model):
 
     def __init__(self, username, passhash):
         self.username = username
-        self.passhash = passhash
+        self.passhash = generate_password_hash(passhash)
