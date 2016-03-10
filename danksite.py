@@ -20,7 +20,7 @@ def show_post():
     query = request.args.get('dank_rank')
 
     if query == "dankest":
-        post = DankPost.query.order_by(desc(DankPost.dank_rank)).limit(1).all()
+        post = DankPost.query.order_by(DankPost.dank_rank.desc()).limit(1).all()
     elif query == "dustiest":
         post = DankPost.query.order_by(DankPost.dank_rank).limit(1).all()
     else:
@@ -43,7 +43,8 @@ def add_entry():
             db.session.add(new_post)
             db.session.commit()
 
-            return redirect(url_for('show_post'))
+            entry = DankPost.query.order_by(DankPost.timestamp).limit(1).all()
+            return redirect(url_for('show_post', entries=entry))
     return render_template('upload.html')
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -100,7 +101,7 @@ def vote():
 
     db.session.commit()
 
-    return ('', status.HTTP_200_OK)
+    return redirect(url_for('show_post'))
 
 @app.route('/categories')
 def show_categories():
