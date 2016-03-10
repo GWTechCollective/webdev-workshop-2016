@@ -61,7 +61,8 @@ target/
 #Ipython Notebook
 .ipynb_checkpoints
 
-# Directories
-tmp/
+# Uploaded images
 static/uploads/
-static/pictures/
+
+# Database
+dank.db
