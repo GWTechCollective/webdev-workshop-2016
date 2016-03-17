@@ -20,7 +20,7 @@ def show_post():
     query = request.args.get('dank_rank')
 
     if query == "dankest":
-        post = DankPost.query.order_by(DankPost.dank_rank.desc()).one_or_none()
+        post = DankPost.query.order_by(desc(DankPost.dank_rank)).limit(1).all()
     elif query == "dustiest":
         post = DankPost.query.order_by(DankPost.dank_rank).one_or_none()
     else:
@@ -101,7 +101,7 @@ def vote():
 
     db.session.commit()
 
-    return redirect(url_for('show_post'))
+    return ('', status.HTTP_200_OK)
 
 @app.route('/categories')
 def show_categories():
