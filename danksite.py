@@ -22,9 +22,9 @@ def show_post():
     if query == "dankest":
         post = DankPost.query.order_by(desc(DankPost.dank_rank)).limit(1).all()
     elif query == "dustiest":
-        post = DankPost.query.order_by(DankPost.dank_rank).one_or_none()
+        post = DankPost.query.order_by(DankPost.dank_rank).limit(1).all()
     else:
-        post = DankPost.query.order_by(func.random()).one_or_none()
+        post = DankPost.query.order_by(func.random()).limit(1).all()
     return render_template('show_post.html', entries=post)
 
 @app.route('/add', methods=['GET', 'POST'])
@@ -43,7 +43,7 @@ def add_entry():
             db.session.add(new_post)
             db.session.commit()
 
-            entry = DankPost.query.order_by(DankPost.timestamp).one_or_none()
+            entry = DankPost.query.order_by(DankPost.timestamp).limit(1).all()
             return redirect(url_for('show_post', entries=entry))
     return render_template('upload.html')
 
@@ -51,7 +51,7 @@ def add_entry():
 def login():
     error = None
     if request.method == 'POST':
-        user = User.query.filter_by(username=request.form['username']).one_or_none()
+        user = User.query.filter_by(username=request.form['username']).limit(1).all()
         if user:
 
             if check_password_hash(user.passhash, request.form['password']):
@@ -72,7 +72,7 @@ def register():
     error = None
 
     if request.method == 'POST':
-        if User.query.filter_by(username=request.form['username']).one_or_none():
+        if User.query.filter_by(username=request.form['username']).limit(1).all():
             error = 'Username already taken.'
         else:
             new_user = User(request.form['username'], request.form['password'])
