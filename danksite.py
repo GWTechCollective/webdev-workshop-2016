@@ -1,7 +1,7 @@
 import os
 from flask import Flask, request, session, redirect, url_for, abort, render_template
-from flask.ext.api import status
-from sqlalchemy.sql.expression import func
+from flask_api import status
+from sqlalchemy.sql.expression import func, desc
 from dank_db import *
 from werkzeug import secure_filename
 from werkzeug.security import check_password_hash
@@ -20,12 +20,13 @@ def show_post():
     query = request.args.get('dank_rank')
 
     if query == "dankest":
-        post = DankPost.query.order_by(desc(DankPost.dank_rank)).limit(1).all()
+        post = DankPost.query.order_by(desc(DankPost.dank_rank)).first()
     elif query == "dustiest":
-        post = DankPost.query.order_by(DankPost.dank_rank).limit(1).all()
+        post = DankPost.query.order_by(DankPost.dank_rank).first()
     else:
-        post = DankPost.query.order_by(func.random()).limit(1).all()
-    return render_template('show_post.html', entries=post)
+        post = DankPost.query.order_by(func.random()).first()
+
+    return render_template('show_post.html', entry=post)
 
 @app.route('/add', methods=['GET', 'POST'])
 def add_entry():
@@ -43,15 +44,15 @@ def add_entry():
             db.session.add(new_post)
             db.session.commit()
 
-            entry = DankPost.query.order_by(DankPost.timestamp).limit(1).all()
-            return redirect(url_for('show_post', entries=entry))
+            entry = DankPost.query.filter_by(timestamp=new_post.timestamp).first()
+            return redirect(url_for('show_post', entry=entry))
     return render_template('upload.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
     if request.method == 'POST':
-        user = User.query.filter_by(username=request.form['username']).limit(1).all()
+        user = User.query.filter_by(username=request.form['username']).one_or_none()
         if user:
 
             if check_password_hash(user.passhash, request.form['password']):
@@ -59,10 +60,10 @@ def login():
                 return redirect(url_for('show_post'))
             else:
                 error = 'Invalid Password'
-                print "Invalid Password: " + request.form['password']
+                print("Invalid Password: " + request.form['password'])
         else:
             error = 'Invalid Username'
-            print "Invalid Username: " + request.form['username']
+            print("Invalid Username: " + request.form['username'])
 
     return render_template('login.html', error=error)
 
@@ -72,7 +73,7 @@ def register():
     error = None
 
     if request.method == 'POST':
-        if User.query.filter_by(username=request.form['username']).limit(1).all():
+        if User.query.filter_by(username=request.form['username']).one_or_none():
             error = 'Username already taken.'
         else:
             new_user = User(request.form['username'], request.form['password'])
