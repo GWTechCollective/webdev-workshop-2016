@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-sm-8">
       <h1><em>Dank. Dank. More Dank.</em></h1><hr><br>
-      {% if entry %}
+      {% for entry in entries %}
         <img id="danker" class="center-block" src="/static/uploads/{{  entry.filename }}">
         <br><br>
         <div class="row">
@@ -17,8 +17,8 @@
           </div>
         </div>
       {% else %}
-        <em>No entries. How dusty.</em>
-      {% endif %}
+        <li><em>No entries. How dusty.</em>
+      {% endfor %}
     </div>
     <div class="col-sm-4" id="sidebar">
         <div id="tweets">

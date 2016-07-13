@@ -2,7 +2,7 @@
 
 ## Required python modules
 
-This project uses Python 3.5.
+This project uses Python 2.7.
 
 The required modules may be installed using the following commands:
 
